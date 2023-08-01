@@ -1,0 +1,302 @@
+{% extends 'adminTemplate/base.html' %}
+
+{% load static %}
+{% block style %}
+     
+    <style>
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        }
+        
+        .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+        
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+        
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+        
+        input:checked + .slider {
+        background-color: #3BB77E;
+        }
+        
+        input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+        }
+        
+        input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+        }
+        
+        /* Rounded sliders */
+        .slider.round {
+        border-radius: 34px;
+        }
+        
+        .slider.round:before {
+        border-radius: 50%;
+        }
+        .fix {
+            position: absolute;
+            *position: relative; /*ie7*/
+            margin-left: -100px;
+            width: 100px;
+          }
+    </style>
+
+{% endblock style %}
+
+
+
+{% block body  %}
+
+
+
+<div class="container">
+    <table class="table table-dark table-striped">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8" style="margin-top: 10px; margin-left:
+                    -15px; ">
+                    <h3><b>Role Has Permissions </b></h3>
+                </div>
+                <div class="col-sm-4 text-end">
+
+                    <div>
+                        <a href='' class="btn btn-primary" style=" padding: 12px
+                            34px; margin-top: 10px; margin-right: -38px;" data-toggle="modal" data-target="#addModal"> <i class="fa-solid fa-plus"></i> Add New</a>
+
+                    </div>
+                </div><br><br>
+                <div class="col-13">
+                    <table class="table table-bordered mt-3" id="role_has_per_tableID">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sno.</th>
+                                <th scope="col" class="w-10">Permissions Id</th>
+                                <th scope="col">User Role Id</th>
+                                {% comment %} <th scope="col">status</th>  {% endcomment %}
+                                <th scope="col">Update</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                          {% for data in role_has_permissionss %}
+                                <th scope="row">{{forloop.counter}}</th>
+
+                                <td scope="row">{{data.permission_id.name}}</td>
+                                <td scope="row">{{data.role_id.user_roles}}</td>
+                                {% comment %} <td scope="row">{{data.status}}</td> {% endcomment %}
+                                {% comment %} <td scope="row">{{data.to_date}}</td>
+                                <td scope="row">{{data.discount}}</td> {% endcomment %}
+
+                                
+
+                                <td>
+                                    {% comment %} <a href="#updModal-{{forloop.counter}}" class="btn btn-success" data-toggle="modal"><i class="fa-regular fa-pen-to-square"></i>
+                                           
+                                    </a> {% endcomment %}
+                                    <a href="#" class="btn btn-success" 
+                                    onclick="updatefunction(
+                                    '{{data.id}}',
+                                    '{{data.permission_id}}',
+                                    '{{data.role_id}}'
+                                    )"
+                                   
+                                    
+                                    data-target="#updModal" data-toggle="modal"><i class="fa-regular fa-pen-to-square"></i>
+                                           
+                                    </a>
+
+                                </td>
+
+                                <td> 
+                                    <a href="{% url 'delete_role_has_permissions' data.id %}" onclick="return confirm('Are You Sure,You want to delete this data?');" class="btn btn-danger"><i class='fas fa-trash-alt'></i>
+                                    </a> 
+                                </td>
+
+                            </tr>
+                            {%endfor%} 
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </table>
+</div>
+
+
+
+
+
+{% comment %} ---------------------------------------------------------------ADD MODAL------------------------------------------------------------------------------- {% endcomment %}
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ADD Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/add_role_has_permissions/" method="post">
+                    {% csrf_token%}
+                    <div class="form-group">
+                        {% comment %} <label for="recipient-name" class="col-form-label">User Name:</label>   
+                        <input type="text" class="form-control" id="user_roles" required name="user_roles"><br> {% endcomment %}
+
+                        <label for="sel1">Permission Id:</label>
+                        <select class="form-control" id="permission_id" name="permission_id">
+                            {%for User in permissions%}
+                            <option value='{{User.id}}'>{{User.name}}</option>
+                            {%endfor%}
+                        </select><br>
+
+                        <label for="sel1">Role Id:</label>
+                        <select class="form-control" id="role_id" name="role_id">
+                            {%for User in user_roless%}
+                            <option value='{{User.id}}'>{{User.user_roles}}</option>
+                            {%endfor%}
+                        </select><br>
+
+
+                        <div class="modal-footer " style=" margin-bottom: -36px;
+                            margin-right: -24px;">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="success" class="btn btn-primary">Submit</button>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% comment %} -----------------------------------------------------------Update Modal------------------------------------------------------------------------------------------ {% endcomment %}
+
+
+<div class="modal fade" id="updModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Update_role_has_permissions/" method="post">
+                    {% csrf_token %}
+                    <input type='hidden' id='idrro' name='upid'>
+
+                    <div class="form-group">
+                        {% comment %} <label for="recipient-name" class="col-form-label">User Name:</label>   
+                        <input type="text" class="form-control" value="" id="userid" required name="user_roles"><br> {% endcomment %}
+
+                        <label for="sel1">Permission Id:</label>
+                        <select class="form-control" id="permission_id" name="permission_id">
+                            {%for User in permissions%}
+                            <option value='{{User.id}}'>{{User.name}}</option>
+                            {%endfor%}
+                        </select><br>
+
+                        <label for="sel1">Role Id:</label>
+                        <select class="form-control" id="role_id" name="role_id">
+                            {%for User in user_roless%}
+                            <option value='{{User.id}}'>{{User.user_roles}}</option>
+                            {%endfor%}
+                        </select><br>
+
+
+
+                        <div class="modal-footer " style=" margin-bottom: -36px;
+                        margin-right: -24px;">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="success" class="btn btn-primary">Submit</button>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function switchFunction(id, status){
+        window.location.href=`{{baseURL}}/change_state_user_role/${id}`;
+    }
+</script>
+<script>
+    
+    function updatefunction(id,
+    permission_id,role_id){
+        
+      $("#permission_id").val(permission_id);
+      $("#role_id").val(role_id);
+      $("#idro").val(id);
+    
+
+
+
+
+      console.log(user_roles);
+      }
+</script>
+
+
+<script>
+
+	// Initialize the DataTable
+	$(document).ready(function () {
+	$('#role_has_per_tableID').DataTable({
+
+		lengthMenu: [ 3, 5, 10 ],
+		
+		// Set the starting row
+		// of the DataTable
+		displayStart: 4
+	});
+	});
+</script>
+
+
+{% endblock body  %} 
+
+
+

@@ -1,0 +1,147 @@
+
+
+***************************************************
+user role:- 
+***********
+
+id
+role name
+role status	
+create date
+update date
+
+
+***************************************************
+user:-
+***********
+
+__user role__
+
+id
+user name
+first name
+last name
+email
+phone number
+address
+user type **********
+profile photo  ???????????
+create date
+update date
+
+
+
+[[
+property owner name
+property owner phone number
+property rent user name
+property rent user phone number
+]]
+
+
+***************************************************
+property :- 
+***********
+
+
+__user__ ->hidden
+
+id 
+property name
+property address
+property photo
+property type -> rent or not
+property dealer ->agent
+property owner name-----------------------------------------------------------------
+property owner phone number---------------------------------------------------------
+
+create date
+update date
+
+
+property location
+
+
+
+***************************************************
+
+issue // Maintenance:-
+***********
+
+
+__user__
+
+id 
+issue title 
+issue details
+issue photo
+time 
+date
+
+
+
+***************************************************
+
+feachers	
+
+service
+cheat ❌
+Schedule❌
+payment❌
+like and favorite❌
+
+
+
+
+
+http://192.168.0.110:8000/add_property/
+
+
+https://studygyaan.com/django/how-to-display-api-response-in-html-using-django-template
+
+
+
+
+
+find login user
+***********
+[[
+request.user.username && request.user
+]]
+***************************************************
+find fild 
+***********
+[[
+Table.objects.first().field == value
+]]
+***************************************************
+find user using phone number and etc....
+***********
+[[
+D = Details.objects.filter(phoneno=35567)
+X=D.first()
+X.user
+]]
+***************************************************
+find username to user details tabel data
+***********
+[[
+							For details in UserDetails.objects.filter(user=User.object.filter(name=name).first()):
+         If details.usertype.userrole == 'admin':
+          ...
+]]
+***************************************************         
+find super user 
+***********
+[[
+{% for obj in object_list %} 
+  {% if obj.is_superuser %}
+    SuperUser 
+  {% else %}
+    Not SuperUser {{ obj.is_superuser }}
+  {% endif %}
+    
+{% endfor %}
+]]
+***************************************************         
+

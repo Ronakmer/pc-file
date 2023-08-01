@@ -1,0 +1,190 @@
+from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone  
+
+
+# Create your models here.
+
+
+
+##############################  status type ##############################
+
+class status_master(models.Model):
+    status=models.CharField(max_length=100, default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+##############################  Maintenance Type  ##############################
+
+
+class maintenance_type(models.Model):
+    maintenance_name=models.CharField(max_length=100, default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+##############################  user role  ##############################
+
+
+class user_role(models.Model):
+    user_roles=models.CharField(max_length=100, default="")
+    status=models.CharField(max_length=20, default="True")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+##############################  user details  ##############################
+
+
+class user_details(models.Model):
+    user=models.ForeignKey(to=User,on_delete=models.CASCADE)
+    user_type=models.ForeignKey(to=user_role,on_delete=models.CASCADE)
+    phone_number = models.IntegerField(blank=True,null=True)
+    address = models.CharField(max_length=30, default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+##############################  client details  ##############################
+
+
+class client_details(models.Model):
+    user=models.ForeignKey(to=User,on_delete=models.CASCADE)
+    user_type=models.ForeignKey(to=user_role,on_delete=models.CASCADE)
+    phone_number = models.IntegerField(blank=True,null=True)
+    address = models.CharField(max_length=30, default="")
+    file = models.FileField(upload_to="home/file")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+##############################  property  ##############################
+
+
+class property(models.Model):
+    owner_name=models.ForeignKey(to=client_details,on_delete=models.CASCADE)
+    dealer_name=models.CharField(max_length=30, default="")
+    property_name = models.CharField(max_length=30, default="")
+    property_address = models.CharField(max_length=100, default="")
+    property_type = models.CharField(max_length=20, default="True")
+    property_description = models.CharField(max_length=200,default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+class property_image(models.Model):
+    property_image = models.ForeignKey(property, on_delete=models.CASCADE)
+    images = models.FileField(upload_to="home/img")
+
+
+##############################  Maintenance  ##############################
+
+
+class maintenance(models.Model):
+    maintenance_type=models.ForeignKey(to=maintenance_type,on_delete=models.CASCADE)
+    status=models.ForeignKey(to=status_master,on_delete=models.CASCADE)
+    user = models.CharField(max_length=30, default="")
+    issue_title = models.CharField(max_length=30, default="")
+    issue_details = models.CharField(max_length=100, default="")
+    issue_address = models.CharField(max_length=100, default="")
+    date=models.DateField()
+    time=models.TimeField()
+    created_at=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+class maintenance_image(models.Model):
+    maintenance_image = models.ForeignKey(maintenance, on_delete=models.CASCADE)
+    images = models.FileField(upload_to="home/img")
+
+
+##############################  Staff  ##############################
+
+
+class Staff(models.Model):
+    user=models.ForeignKey(to=User,on_delete=models.CASCADE)
+    member_role=models.ForeignKey(to=user_role,on_delete=models.CASCADE)
+    member_contact_number = models.CharField(max_length= 10, default="")
+    member_address =  models.CharField(max_length= 100, default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+##############################  team  ##############################
+
+
+class team(models.Model):
+    team_name =  models.CharField(max_length= 100, default="")
+    staff_id=models.ForeignKey(to=Staff,on_delete=models.CASCADE)
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+##############################  Maintenance status  ##############################
+
+
+class maintenance_status(models.Model):
+    maintenance_id=models.ForeignKey(to=maintenance,on_delete=models.CASCADE)
+    status=models.ForeignKey(to=status_master,on_delete=models.CASCADE)
+    staff_id=models.ForeignKey(to=team,on_delete=models.CASCADE)
+    issue_title = models.CharField(max_length=30, default="")
+    issue_details = models.CharField(max_length=100, default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+class maintenance_status_image(models.Model):
+    maintenance_status_image = models.ForeignKey(maintenance_status, on_delete=models.CASCADE)
+    images = models.FileField(upload_to="home/img")
+
+
+##############################  permission && role_has_permissions  ##############################
+
+
+class permission(models.Model):
+    name=models.CharField(max_length=180,default="")
+    guard_name=models.CharField(max_length=100,default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+class role_has_permissions(models.Model):
+    permission_id=models.ForeignKey(to=permission,on_delete=models.CASCADE)
+    role_id=models.ForeignKey(to=user_role,on_delete=models.CASCADE)
+
+
+##############################  complain history  ##############################
+
+
+class complain_history(models.Model):
+    complain_id=models.ForeignKey(to=maintenance,on_delete=models.CASCADE)
+    username = models.CharField(max_length=30, default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+    
+
+##############################  issue  ##############################
+
+
+class issue(models.Model):
+    username = models.CharField(max_length=30, default="")
+    issue_title = models.CharField(max_length=30, default="")
+    issue_details = models.CharField(max_length=100, default="")
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+    
+
+##############################  reminder  ##############################
+
+
+class reminder(models.Model):
+    property_name=models.ForeignKey(to=property,on_delete=models.CASCADE)
+    reminder_title=models.CharField(max_length=20, default="")
+    amount=models.CharField(max_length=20, default="")
+    date=models.DateField(default=timezone.now)
+    createDate=models.DateTimeField(default=timezone.now)
+    updateDate=models.DateTimeField(auto_now=True)
+
+
+

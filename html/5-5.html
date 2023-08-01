@@ -1,0 +1,132 @@
+<!-- 
+
+
+<h1>Dynamic Background</h1>
+    
+    <div></div>
+
+
+<script>
+  window.onload = function () {
+    var backgroundImg=["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyB57zuc4bms-hDtWMa-4BZvscIlJDm4r7a9WLaO4SAxUvKM-DDA",
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBinSpWOvAtkxjmkf709O3rjH2ObRbWAEn9s0JcWaeL6LMtCbOrQ",
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKY4J2qIFqkuDnABMzeypywbMSZL1cleS8vpySz0KD02wOYORU1g",
+                      "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRQkdQT0zN0xDVP-VuvwojSbS5dOstX14eZvJCOWNPxKJ5dWTIc"
+                      ]
+    
+      setInterval(changeImage, 5000);
+     function changeImage() {   
+      var i = Math.floor((Math.random() * 3));
+      
+      document.body.style.backgroundImage = "url('"+backgroundImg[i]+"')";
+      
+    }
+  }
+</script>  -->
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<!-- jQuery -->
+<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.5.1.js">
+</script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet"
+		href=
+"https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
+<!-- DataTables JS -->
+<script src=
+"https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+</script>
+<style>
+	td{
+	text-align:center;
+	}
+</style>
+</head>
+<body>
+<h2 style="color:green;">
+	GeeksforGeeks
+</h2>
+<h3>DataTables displayStart Option</h3>
+
+<!-- HTML table with random data -->
+<table id="tableID" class="display nowrap">
+	<thead>
+	<tr>
+		<th>Number</th>
+		<th>Name</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>1</td>
+		<td>One</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Two</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>Three</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>Four</td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>Five</td>
+	</tr>
+	<tr>
+		<td>6</td>
+		<td>Six</td>
+	</tr>
+	<tr>
+		<td>7</td>
+		<td>Seven</td>
+	</tr>
+	<tr>
+		<td>8</td>
+		<td>Eight</td>
+	</tr>
+	<tr>
+		<td>9</td>
+		<td>Nine</td>
+	</tr>
+	<tr>
+		<td>10</td>
+		<td>Ten</td>
+	</tr>
+	</tbody>
+</table>
+<script>
+
+	// Initialize the DataTable
+	$(document).ready(function () {
+	$('#tableID').DataTable({
+
+		lengthMenu: [ 3, 5, 10 ],
+		
+		// Set the starting row
+		// of the DataTable
+		displayStart: 4
+	});
+	});
+</script>
+</body>
+</html>
+
+
+

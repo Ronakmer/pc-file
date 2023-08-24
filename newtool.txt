@@ -1,5 +1,6 @@
 
 tool    
+	man count --->>> https://data-flair.training/blogs/python-project-real-time-human-detection-counting/
 	website to apk                   
     	Instagram Reels
     	object count ( marble )
@@ -14,7 +15,11 @@ tool
     	mouse move 🔥🔥
     	ip to find user----------->>>>https://www.youtube.com/watch?v=AFufUTINvmo
     	phone number to find ------>>>>https://www.youtube.com/watch?v=DY4M9bAVyUc
+
     	Image to find people-------->>>> https://www.google.com/search?q=how+to+drop+image+and+serch+in+googel+using+pyhton&oq=how+to+drop+image+and+serch+in+googel+using+pyhton&aqs=chrome..69i57.39687j0j1&sourceid=chrome&ie=UTF-8
+
+    	Grammar Checker --------->>>>> https://www.google.com/search?q=how+to+solve+english+gramer+prolbel+uisng+pyhton&oq=how+to+solve+english+gramer+prolbel+uisng+pyhton&aqs=chrome..69i57.28104j0j1&sourceid=chrome&ie=UTF-8  //////    https://thecleverprogrammer.com/2021/03/16/grammar-correction-using-python/
+    	
     [[
 	find text in image
 	find color 🔥🔥
@@ -62,9 +67,9 @@ seo,subdomain->
 templet->
 8_blod->
 12_new tools->
-eduction->
-footer->🔥🔥
-serch bar->
+eduction->❓❓❓
+footer->
+serch bar->❓❓❓
 api-key->
 https->
 in line css->

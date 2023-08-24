@@ -101,8 +101,10 @@ https://studygyaan.com/django/how-to-display-api-response-in-html-using-django-t
 
 
 
-
-
+OneToOneField
+***********
+place = models.OneToOneField(status_master,on_delete=models.CASCADE,primary_key=True,)
+***************************************************
 find login user
 ***********
 [[

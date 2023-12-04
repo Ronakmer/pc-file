@@ -1,11 +1,12 @@
  http://startuptanks.in:8090/
+https://pos.startuptanks.in/
 
 https://tech2space.in/   🔥🔥
 https://notepad.pw/tech2space  🔥🔥
 https://github.com/HemalCnet/plastic_erp_masters
 
 
-
+python manage.py seed
 python3 manage.py makemigrations   💥💥
 python3 manage.py migrate          💥💥
 python3 manage.py runserver        💥💥
@@ -255,20 +256,16 @@ project list
 	real estate =>ronakmer.quantumbot@gmail.com ->> github
 	chia_seeds =>ronakmer942@gmail.com ->> github ===>>> aakash project
 	saicab =>ronakmer942@gmail.com ->> github
-	tour_travels =>ronakmer942@gmail.com ->> github
-	Star Hospital =>ronakmer.quantumbot@gmail.com ->> github
+	tour_travels =>ronakmer942@gmail.com ->> github ===>>> main project
+	tour_travels-copy =>ronakmer942@gmail.com ->> github ===>>> copy project
+	Star Hospital =>ronakmer.quantumbot@gmail.com ->> github ❌❌❌❌
+	pos =>ronakmer.quantumbot@gmail.com ->> github
+	
+	jupyter book => ?????
+	tally =>?????
 
 ]]
 ##########################
-
-
-
-call 
-[[
-
-]]
-
-
 
 
 

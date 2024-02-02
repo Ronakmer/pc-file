@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<title>
+		Creating Search Bar using HTML
+		CSS and Javascript
+	</title>
+	
+	<!-- linking the stylesheet(CSS) -->
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+	
+	<!-- input tag -->
+	<input id="searchbar" onkeyup="search_animal()" type="text"
+		name="search" placeholder="Search animals..">
+	
+	<!-- ordered list -->
+	
+	<ol id='list'>
+			<div class="row">
+			<div class="col-sm ">
+					<li class="animals">
+					<a style="cursor:pointer; text-decoration:none; color:black;"  href="{%url 'png2jpg'%}">
+						<div class="h-100 ">
+							<div class="card-body text-center  cardCustom">
+								
+								<h5 >Png To Jpg</h5>
+								
+								
+								
+							</div>
+						</div>
+					</a>
+				</li>
+				</div>
+				<div class="col-sm">
+					<li class="animals">
+					<a style="cursor:pointer; text-decoration:none; color:black;"  href="{%url 'jpg2png'%}">
+						<div class=" h-100 ">
+							<div class="card-body text-center cardCustom ">
+								
+								<h5>Jpg To Png</h5>
+								
+								
+								
+							</div>
+						</div>
+					</a>
+				</li>
+				</div>
+				<div class="col-sm">
+					<li class="animals">
+					<a style="cursor:pointer; text-decoration:none; color:black;"  href="{%url 'icon2png'%}">
+						<div class=" h-100 ">
+							<div class="card-body text-center  cardCustom">
+								
+								<h5 >Icon To Png</h5>
+								
+								
+							</div>
+						</div>
+					</a>
+				</li>
+				</div>
+			</div>
+		</ol>
+	<!-- linking javascript -->
+	<script src="./animals.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

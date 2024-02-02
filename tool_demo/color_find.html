@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Color Picker</title>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="image-container">
+        <img id="image" src="demo-image-3.jpg" />
+      </div>
+      <div class="btns-container">
+        <input type="file" id="file" accesskey="image/*" />
+        <label for="file">Open A Photo</label>
+        <button id="pick-color">Pick Color</button>
+      </div>
+      <div id="error" class="hide"></div>
+      <div id="result" class="hide">
+        <div>
+          <input type="text" id="hex-val-ref" />
+          <button onclick="copy('hex-val-ref')">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+        <div>
+          <input type="text" id="rgb-val-ref" />
+          <button onclick="copy('rgb-val-ref')">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+        <div id="picked-color-ref"></div>
+      </div>
+      <div id="custom-alert">Color Code Copied!</div>
+    </div>
+    <!-- Script -->
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+<script>
+    //Create Initial references
+let pickColor = document.getElementById("pick-color");
+let error = document.getElementById("error");
+let fileInput = document.getElementById("file");
+let image = document.getElementById("image");
+let hexValRef = document.getElementById("hex-val-ref");
+let rgbValRef = document.getElementById("rgb-val-ref");
+let customAlert = document.getElementById("custom-alert");
+let pickedColorRef = document.getElementById("picked-color-ref");
+let eyeDropper;
+
+//Function On Window Load
+window.onload = () => {
+  //Check if the browser supports eyedropper
+  if ("EyeDropper" in window) {
+    pickColor.classList.remove("hide");
+    eyeDropper = new EyeDropper();
+  } else {
+    error.classList.remove("hide");
+    error.innerText = "Your browser doesn't support Eyedropper API";
+    pickColor.classList.add("hide");
+    return false;
+  }
+};
+
+//Eyedropper logic
+const colorSelector = async () => {
+  const color = await eyeDropper
+    .open()
+    .then((colorValue) => {
+      error.classList.add("hide");
+      //Get the hex color code
+      let hexValue = colorValue.sRGBHex;
+      //Convert Hex Value To RGB
+      let rgbArr = [];
+      for (let i = 1; i < hexValue.length; i += 2) {
+        rgbArr.push(parseInt(hexValue[i] + hexValue[i + 1], 16));
+        console.log(rgbArr);
+      }
+      let rgbValue = "rgb(" + rgbArr + ")";
+      console.log(hexValue, rgbValue);
+      result.style.display = "grid";
+      hexValRef.value = hexValue;
+      rgbValRef.value = rgbValue;
+      pickedColorRef.style.backgroundColor = hexValue;
+    })
+    .catch((err) => {
+      error.classList.remove("hide");
+      //If user presses escape to close the eyedropper
+      if (err.toString().includes("AbortError")) {
+        error.innerText = "";
+      } else {
+        error.innerText = err;
+      }
+    });
+};
+
+//Button click
+pickColor.addEventListener("click", colorSelector);
+
+//Allow user to choose image of their own choice
+fileInput.onchange = () => {
+  result.style.display = "none";
+  //The fileReader object helps to read contents of file stored on computer
+  let reader = new FileReader();
+  //readAsDataURL reads the content of input file
+  reader.readAsDataURL(fileInput.files[0]);
+  reader.onload = () => {
+    //onload is triggered after file reading operation is successfully completed
+    //set src attribute of image to result/input file
+    image.setAttribute("src", reader.result);
+  };
+};
+
+//Function to copy the color code
+let copy = (textId) => {
+  //Selects the text in the <input> element
+  document.getElementById(textId).select();
+  //Copies the selected text to clipboard
+  document.execCommand("copy");
+  //Display Alert
+  customAlert.style.transform = "scale(1)";
+  setTimeout(() => {
+    customAlert.style.transform = "scale(0)";
+  }, 2000);
+};
+</script>

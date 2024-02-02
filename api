@@ -1,4 +1,4 @@
- http://startuptanks.in:8090/
+http://startuptanks.in:8090/
 https://pos.startuptanks.in/
 
 https://tech2space.in/   🔥🔥
@@ -6,7 +6,21 @@ https://notepad.pw/tech2space  🔥🔥
 https://github.com/HemalCnet/plastic_erp_masters
 
 
-python manage.py seed
+https://sterlizia.co.in/pos_admin/login/
+
+
+https://erp.illusiodesigns.com/login
+https://api.illusiodesigns.com/
+https://www.figma.com/file/QMQWoGFaBx9a5mLSz3Fa8A/Mu.AI-Website-Template?type=design&node-id=0-1&mode=design
+	
+	
+	
+django-admin startproject demo	
+python3 manage.py startapp home
+
+
+
+python3 manage.py seed
 python3 manage.py makemigrations   💥💥
 python3 manage.py migrate          💥💥
 python3 manage.py runserver        💥💥
@@ -267,8 +281,15 @@ project list
 ]]
 ##########################
 
-
-
+project info
+[[
+	3d
+	script
+	pos
+	jupyter book 
+	accounting erp in django
+	django project list [ e-comm, Hospital appoitment, infrmentive, etc... ]  
+]]
 
 ##########################################################################
 https://stackoverflow.com/questions/47190861/how-can-the-default-node-version-be-set-using-nvm --->> node veriosn

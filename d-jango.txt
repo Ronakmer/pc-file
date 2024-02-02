@@ -5,23 +5,23 @@ http://192.168.0.110:8000/add_property/
 https://studygyaan.com/django/how-to-display-api-response-in-html-using-django-template
 
 
-
+###################################################
 OneToOneField
 ***********
 place = models.OneToOneField(status_master,on_delete=models.CASCADE,primary_key=True,)
-***************************************************
+###################################################
 find login user
 ***********
 [[
 request.user.username && request.user
 ]]
-***************************************************
+###################################################
 find fild 
 ***********
 [[
 Table.objects.first().field == value
 ]]
-***************************************************
+###################################################
 find user using phone number and etc....
 ***********
 [[
@@ -29,7 +29,7 @@ D = Details.objects.filter(phoneno=35567)
 X=D.first()
 X.user
 ]]
-***************************************************
+###################################################
 find username to user details tabel data
 ***********
 [[
@@ -37,7 +37,7 @@ find username to user details tabel data
          If details.usertype.userrole == 'admin':
           ...
 ]]
-***************************************************         
+###################################################         
 find super user 
 ***********
 [[
@@ -50,21 +50,25 @@ find super user
     
 {% endfor %}
 ]]
-*************************************************** 
+################################################### 
 mail       
 ***********
 [[
 <input type="email" class="form-control" id="recipient-name" required name="email" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$">
 ]]
-*************************************************** 
+################################################### 
 phone number       
 ***********
 [[
 <input type="text"  class="form-control" id="" name="number" pattern="[1-9]{1}[0-9]{9}" title="Enter 10 digit mobile number" placeholder="" required>
 ]]
-
-
-
+###################################################
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ronakmer.quantumbot@gmail.com' 
+EMAIL_HOST_PASSWORD = 'iyoh gums apoh qwnb'
 
 
 

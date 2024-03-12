@@ -63,14 +63,55 @@ phone number
 <input type="text"  class="form-control" id="" name="number" pattern="[1-9]{1}[0-9]{9}" title="Enter 10 digit mobile number" placeholder="" required>
 ]]
 ###################################################
+mail settings       
+***********
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'ronakmer.quantumbot@gmail.com' 
 EMAIL_HOST_PASSWORD = 'iyoh gums apoh qwnb'
+###################################################
+remove image in image folder
+****************************
+maltipal image remove
+[[
+	image_paths = [
+	    os.path.join(settings.MEDIA_ROOT, str(student_obj.student_img)),
+	    os.path.join(settings.MEDIA_ROOT, str(student_obj.ceo_sing)),
+	    os.path.join(settings.MEDIA_ROOT, str(student_obj.student_sing)),
+	]
 
+	for image_path in image_paths:
+	    if os.path.exists(image_path):
+		os.remove(image_path)
+]]
+1 image remove
+**************
+[[
+        course_photo=os.path.join(settings.MEDIA_ROOT, str(course_obj.course_photo))
+        if os.path.exists(course_photo):
+            os.remove(course_photo)
+]]
+1 image remove
+**************
+[[
+if student_obj.student_img:
+    student_obj.student_img.delete()
+]]
+###################################################
+login required in url
+*********************
+[[
+    path('add-role/', login_required(add_role), name="add_role"),
 
-
+]]
+###################################################
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 

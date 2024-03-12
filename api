@@ -19,7 +19,7 @@ django-admin startproject demo
 python3 manage.py startapp home
 
 
-
+python3 manage.py shell
 python3 manage.py seed
 python3 manage.py makemigrations   💥💥
 python3 manage.py migrate          💥💥

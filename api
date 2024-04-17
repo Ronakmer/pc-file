@@ -5,6 +5,7 @@ https://tech2space.in/   🔥🔥
 https://notepad.pw/tech2space  🔥🔥
 https://github.com/HemalCnet/plastic_erp_masters
 
+https://lee10.quantumbot.in/login     plastic
 
 https://sterlizia.co.in/pos_admin/login/
 
@@ -17,6 +18,12 @@ https://www.figma.com/file/QMQWoGFaBx9a5mLSz3Fa8A/Mu.AI-Website-Template?type=de
 	
 django-admin startproject demo	
 python3 manage.py startapp home
+
+python3 -m venv dmeo
+
+python3 -m pip install Django
+
+python3 -m compileall views.py
 
 
 python3 manage.py shell
